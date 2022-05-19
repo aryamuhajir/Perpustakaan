@@ -3,6 +3,7 @@ package com.example.perpustakaan.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +24,8 @@ class ProfileActivity : AppCompatActivity() {
     lateinit var viewModel : ViewModelPinjam
     lateinit var userManager : UserManager
     lateinit var bookAdapter : PinjamAdapter
+    var username = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +34,6 @@ class ProfileActivity : AppCompatActivity() {
         pinjamDb = PeminjamanDatabase.getInstance(this)
         userManager = UserManager(this)
 
-        var username = ""
         userManager.userNAME.asLiveData().observe(this){
             username = it
             getAllPinjaman(username)
@@ -58,25 +60,35 @@ class ProfileActivity : AppCompatActivity() {
 
 
             viewModel.getLiveBukuObserver().observe(this@ProfileActivity){
-                if (it != null){
+                if (it.size >=1){
                     rv_list.layoutManager = LinearLayoutManager(this@ProfileActivity)
                     bookAdapter = PinjamAdapter (){
                         val pindah = Intent(this@ProfileActivity, DetailActivity::class.java)
                         val detailBuku : GetAllBukuResponseItem = GetAllBukuResponseItem("asdasd", it.idBuku.toString(),it.judul, it.penerbit,it.penulis,it.sampul,
                         it.sinopsis, 0, it.tanggalRilis)
                         pindah.putExtra("detailbuku", detailBuku)
+                        pindah.putExtra("status", "profile")
+
                         startActivity(pindah)
                     }
                     rv_list.adapter = bookAdapter
                     bookAdapter.setDataFilm(it)
                     bookAdapter.notifyDataSetChanged()
-                }else{
+                    txtBelum.visibility = View.INVISIBLE
 
+                }else{
+                    txtBelum.visibility = View.VISIBLE
                 }
 
             }
             viewModel.getPinjamLive(username)
 
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        pinjamDb = PeminjamanDatabase.getInstance(this)
+        getAllPinjaman(username)
     }
 }

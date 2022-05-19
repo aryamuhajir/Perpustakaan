@@ -2,6 +2,7 @@ package com.example.perpustakaan.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
@@ -31,7 +32,12 @@ class DetailActivity : AppCompatActivity() {
 
 
         val detailBuku = intent.getParcelableExtra<GetAllBukuResponseItem>("detailbuku")
+        val status = intent.getStringExtra("status")
+        if (status != "home"){
+            btnPinjam.text = "KEMBALIKAN"
+        }
 
+        val idBuku = detailBuku?.id
         val judul = detailBuku?.judul
         val penerbit = detailBuku?.penerbit
         val penulis = detailBuku?.penulis
@@ -49,25 +55,38 @@ class DetailActivity : AppCompatActivity() {
         Glide.with(applicationContext).load(detailBuku?.sampul).into(imageBuku1)
 
         btnPinjam.setOnClickListener {
-             userManager.userNAME.asLiveData().observe(this){
-                 var username = it.toString()
-                 if (txtLangganan.text.equals("premium")){
-                     GlobalScope.launch {
-                         viewModel.pinjamLive(Peminjaman(null, username, detailBuku?.id!!.toInt(), "PREMIUM", judul!!, penerbit!!, penulis!!, sampul!! , sinopsis!!, tanggalRilis!!))
-                         runOnUiThread {
-                             Toast.makeText(this@DetailActivity, "Berhasil meminjam buku premium", Toast.LENGTH_LONG).show()
-                         }
-                     }
-                 }else{
-                     GlobalScope.launch {
-                         viewModel.pinjamLive(Peminjaman(null, username, detailBuku?.id!!.toInt(), detailBuku?.tanggalPinjam.toString(),  judul!!, penerbit!!, penulis!!, sampul!! , sinopsis!!, tanggalRilis!!))
-                         runOnUiThread {
-                             Toast.makeText(this@DetailActivity, "Berhasil meminjam buku premium", Toast.LENGTH_LONG).show()
-                         }
-                     }
-                 }
+            if (btnPinjam.text.equals("PINJAM")){
+                userManager.userNAME.asLiveData().observe(this){
+                    var username = it.toString()
+                    if (txtLangganan.text.equals("premium")){
+                        GlobalScope.launch {
+                            viewModel.pinjamLive(Peminjaman(null, username, detailBuku?.id!!.toInt(), "PREMIUM", judul!!, penerbit!!, penulis!!, sampul!! , sinopsis!!, tanggalRilis!!))
+                            runOnUiThread {
+                                Toast.makeText(this@DetailActivity, "Berhasil meminjam buku premium", Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    }else{
+                        GlobalScope.launch {
+                            viewModel.pinjamLive(Peminjaman(null, username, detailBuku?.id!!.toInt(), detailBuku?.tanggalPinjam.toString(),  judul!!, penerbit!!, penulis!!, sampul!! , sinopsis!!, tanggalRilis!!))
+                            runOnUiThread {
+                                Toast.makeText(this@DetailActivity, "Berhasil meminjam buku gratis", Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    }
 
+                }
+            }else{
+                userManager.userNAME.asLiveData().observe(this) {
+                    var username = it.toString()
+                    GlobalScope.launch {
+                        viewModel.kembaliLive(idBuku!!.toInt(), username)
+                        runOnUiThread {
+                            Toast.makeText(this@DetailActivity, "Berhasil mengembalikan buku", Toast.LENGTH_LONG).show()
+                        }
+                    }
+                }
             }
+
 
 
         }

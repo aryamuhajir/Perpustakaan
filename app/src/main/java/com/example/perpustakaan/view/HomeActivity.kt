@@ -44,6 +44,7 @@ class HomeActivity : AppCompatActivity() {
                 bookAdapter = RvAdapter (){
                     val pindah = Intent(this@HomeActivity, DetailActivity::class.java)
                     pindah.putExtra("detailbuku", it)
+                    pindah.putExtra("status", "home")
                     startActivity(pindah)
                 }
                 rv_item.adapter = bookAdapter

@@ -42,6 +42,9 @@ class ViewModelPinjam (application: Application) : AndroidViewModel(application)
     fun getPinjamLive(username : String) = viewModelScope.launch(Dispatchers.IO) {
         cekData.postValue(repository.getPinjamRepo(username))
     }
+    fun kembaliLive(id : Int, username: String) = viewModelScope.launch(Dispatchers.IO) {
+        repository.kembaliRepo(id, username)
+    }
 
 
 //    fun getLiveFilmObserver() : MutableLiveData<List<DataFilmBaruItem>> {

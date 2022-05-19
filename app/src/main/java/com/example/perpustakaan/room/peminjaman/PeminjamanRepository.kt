@@ -11,4 +11,7 @@ class PeminjamanRepository(private val dao : PeminjamanDao) {
     suspend fun getPinjamRepo(username : String) : List<Peminjaman>{
         return dao.getPeminjaman(username)
     }
+    suspend fun kembaliRepo(id : Int, username: String) {
+        dao.kembali(id, username)
+    }
 }

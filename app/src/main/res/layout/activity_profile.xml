@@ -20,4 +20,14 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/btnLogout" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="BELUM MEMINJAM BUKU"
+        android:id="@+id/txtBelum"
+        android:layout_centerInParent="true"/>
+
 </RelativeLayout>
