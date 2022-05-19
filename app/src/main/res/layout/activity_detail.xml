@@ -79,6 +79,13 @@
             android:layout_below="@id/txtPenerbit"
             android:id="@+id/txtSinopsis"/>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PINJAM"
+            android:id="@+id/btnPinjam"
+            android:layout_below="@id/txtSinopsis"/>
+
     </RelativeLayout>
 
 

@@ -7,7 +7,8 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.perpustakaan.R
-import com.example.perpustakaan.room.UserDatabase
+import com.example.perpustakaan.datastore.UserManager
+import com.example.perpustakaan.room.user.UserDatabase
 import com.example.perpustakaan.viewmodel.ViewModelUser
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
@@ -15,11 +16,15 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var userManager: UserManager
+
     var userDb : UserDatabase? = null
     lateinit var viewModel : ViewModelUser
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        userManager = UserManager(this)
 
         userDb = UserDatabase.getInstance(this)
 
@@ -37,6 +42,7 @@ class MainActivity : AppCompatActivity() {
                     if (it != 0){
                         Toast.makeText(this, "Berhasil Login", Toast.LENGTH_LONG).show()
                         startActivity(Intent(this@MainActivity, HomeActivity::class.java))
+                        loginDataStore(user, password)
                         finish()
                     }else{
                         Toast.makeText(this, "Username atau Password salah", Toast.LENGTH_LONG).show()
@@ -48,6 +54,13 @@ class MainActivity : AppCompatActivity() {
 
             }
 
+        }
+    }
+
+    fun loginDataStore(username : String, password : String){
+        GlobalScope.launch {
+            userManager.login(username, password)
+            userManager.setStatus("yes")
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.perpustakaan.room
+package com.example.perpustakaan.room.user
 
 import android.content.Context
 import androidx.room.Database

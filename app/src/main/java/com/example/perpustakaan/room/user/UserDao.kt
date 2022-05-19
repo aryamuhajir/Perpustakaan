@@ -1,4 +1,4 @@
-package com.example.perpustakaan.room
+package com.example.perpustakaan.room.user
 
 import androidx.room.Dao
 import androidx.room.Insert

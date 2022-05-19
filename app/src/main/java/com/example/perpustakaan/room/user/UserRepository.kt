@@ -1,4 +1,4 @@
-package com.example.perpustakaan.room
+package com.example.perpustakaan.room.user
 
 class UserRepository (private val dao : UserDao) {
 

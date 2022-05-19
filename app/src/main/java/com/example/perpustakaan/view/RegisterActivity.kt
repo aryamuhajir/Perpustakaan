@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.perpustakaan.R
-import com.example.perpustakaan.room.User
-import com.example.perpustakaan.room.UserDatabase
+import com.example.perpustakaan.room.user.User
+import com.example.perpustakaan.room.user.UserDatabase
 import com.example.perpustakaan.viewmodel.ViewModelUser
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.coroutines.GlobalScope
@@ -19,6 +19,7 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
+
 
         userDb = UserDatabase.getInstance(this)
 
