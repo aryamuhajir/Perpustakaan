@@ -9,15 +9,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="20dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
+            android:text="premium"
+            android:id="@+id/txtLangganan"/>
+
+        <TextView
+            android:id="@+id/detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Detail"
             android:textColor="@color/black"
             android:textSize="30sp"
-            android:text="Detail"
-            android:id="@+id/detail"
-            android:layout_centerHorizontal="true"/>
+            android:textStyle="bold" />
 
 
         <ImageView

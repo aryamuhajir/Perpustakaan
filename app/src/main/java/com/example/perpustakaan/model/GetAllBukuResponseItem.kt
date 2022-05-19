@@ -22,7 +22,7 @@ data class GetAllBukuResponseItem(
     @SerializedName("sinopsis")
     val sinopsis: String,
     @SerializedName("tanggalPinjam")
-    val tanggalPinjam: Int,
+    val tanggalPinjam: Int?,
     @SerializedName("tanggalRilis")
     val tanggalRilis: String
 ) : Parcelable

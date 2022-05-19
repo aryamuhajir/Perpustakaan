@@ -29,6 +29,10 @@ class HomeActivity : AppCompatActivity() {
 
         getDataBuku()
 
+        btnProfile.setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
+        }
+
 
     }
 

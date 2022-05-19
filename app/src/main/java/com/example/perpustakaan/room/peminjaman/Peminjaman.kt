@@ -4,6 +4,8 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.perpustakaan.model.GetAllBukuResponseItem
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -16,5 +18,17 @@ data class Peminjaman(
     @ColumnInfo(name = "id_buku")
     var idBuku : Int,
     @ColumnInfo(name = "deadline")
-    var deadline : Int?
+    var deadline : String?,
+    @ColumnInfo(name =  "judul")
+    val judul: String,
+    @ColumnInfo(name ="penerbit")
+    val penerbit: String,
+    @ColumnInfo(name = "penulis")
+    val penulis: String,
+    @ColumnInfo(name =  "sampul")
+    val sampul: String,
+    @ColumnInfo(name = "sinopsis")
+    val sinopsis: String,
+    @ColumnInfo(name = "tanggalRilis")
+    val tanggalRilis: String
 ) : Parcelable

@@ -2,17 +2,21 @@ package com.example.perpustakaan.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import com.bumptech.glide.Glide
 import com.example.perpustakaan.R
 import com.example.perpustakaan.datastore.UserManager
 import com.example.perpustakaan.model.GetAllBukuResponseItem
+import com.example.perpustakaan.room.peminjaman.Peminjaman
 import com.example.perpustakaan.room.peminjaman.PeminjamanDatabase
 import com.example.perpustakaan.room.user.UserDatabase
 import com.example.perpustakaan.viewmodel.ViewModelPinjam
 import com.example.perpustakaan.viewmodel.ViewModelUser
 import kotlinx.android.synthetic.main.activity_detail.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class DetailActivity : AppCompatActivity() {
     var pinjamDb : PeminjamanDatabase? = null
@@ -28,18 +32,43 @@ class DetailActivity : AppCompatActivity() {
 
         val detailBuku = intent.getParcelableExtra<GetAllBukuResponseItem>("detailbuku")
 
-        txtJudul.text = detailBuku?.judul
-        txtPenerbit.text = detailBuku?.penerbit
-        txtPenulis.text = detailBuku?.penulis
-        txtSinopsis.text = detailBuku?.sinopsis
-        txtTanggal.text = detailBuku?.tanggalRilis
+        val judul = detailBuku?.judul
+        val penerbit = detailBuku?.penerbit
+        val penulis = detailBuku?.penulis
+        val sinopsis = detailBuku?.sinopsis
+        val tanggalRilis = detailBuku?.tanggalRilis
+        val sampul = detailBuku?.sampul
+
+
+        txtJudul.text = judul
+        txtPenerbit.text = penerbit
+        txtPenulis.text = penulis
+        txtSinopsis.text = sinopsis
+        txtTanggal.text = tanggalRilis
 
         Glide.with(applicationContext).load(detailBuku?.sampul).into(imageBuku1)
 
         btnPinjam.setOnClickListener {
              userManager.userNAME.asLiveData().observe(this){
                  var username = it.toString()
+                 if (txtLangganan.text.equals("premium")){
+                     GlobalScope.launch {
+                         viewModel.pinjamLive(Peminjaman(null, username, detailBuku?.id!!.toInt(), "PREMIUM", judul!!, penerbit!!, penulis!!, sampul!! , sinopsis!!, tanggalRilis!!))
+                         runOnUiThread {
+                             Toast.makeText(this@DetailActivity, "Berhasil meminjam buku premium", Toast.LENGTH_LONG).show()
+                         }
+                     }
+                 }else{
+                     GlobalScope.launch {
+                         viewModel.pinjamLive(Peminjaman(null, username, detailBuku?.id!!.toInt(), detailBuku?.tanggalPinjam.toString(),  judul!!, penerbit!!, penulis!!, sampul!! , sinopsis!!, tanggalRilis!!))
+                         runOnUiThread {
+                             Toast.makeText(this@DetailActivity, "Berhasil meminjam buku premium", Toast.LENGTH_LONG).show()
+                         }
+                     }
+                 }
+
             }
+
 
         }
     }

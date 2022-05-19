@@ -18,7 +18,7 @@ abstract class PeminjamanDatabase : RoomDatabase() {
             if (INSTANCE == null){
                 synchronized(User::class){
                     INSTANCE = Room.databaseBuilder(context.applicationContext,
-                        PeminjamanDatabase::class.java,"Peminjaman.db").allowMainThreadQueries().build()
+                        PeminjamanDatabase::class.java,"Peminjaman3.db").allowMainThreadQueries().build()
                 }
             }
             return INSTANCE

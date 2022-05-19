@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.perpustakaan.model.GetAllBukuResponseItem
 import com.example.perpustakaan.room.peminjaman.Peminjaman
 import com.example.perpustakaan.room.peminjaman.PeminjamanDatabase
 import com.example.perpustakaan.room.peminjaman.PeminjamanRepository
@@ -20,7 +21,7 @@ class ViewModelPinjam (application: Application) : AndroidViewModel(application)
 
 
     //
-    lateinit var cekData : MutableLiveData<Int>
+    lateinit var cekData : MutableLiveData<List<Peminjaman>>
 //
 //    lateinit var liveDataFilm : MutableLiveData<List<DataFilmBaruItem>>
 
@@ -30,9 +31,16 @@ class ViewModelPinjam (application: Application) : AndroidViewModel(application)
         cekData = MutableLiveData()
 
     }
+    fun getLiveBukuObserver(): MutableLiveData<List<Peminjaman>> {
+        return cekData
+    }
 
     fun pinjamLive(pinjam : Peminjaman) = viewModelScope.launch(Dispatchers.IO) {
         repository.pinjamRepo(pinjam)
+    }
+
+    fun getPinjamLive(username : String) = viewModelScope.launch(Dispatchers.IO) {
+        cekData.postValue(repository.getPinjamRepo(username))
     }
 
 
