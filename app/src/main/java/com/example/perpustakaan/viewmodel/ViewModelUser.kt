@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 class ViewModelUser (application: Application) : AndroidViewModel(application) {
 //    lateinit var allFav : LiveData<List<Favorite>>
 
-    lateinit var repository: UserRepository
+    private lateinit var repository: UserRepository
 
 
 //

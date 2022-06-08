@@ -6,19 +6,21 @@
     android:layout_height="match_parent"
     android:background="@drawable/backgroundbuku"
     android:orientation="vertical"
-    tools:context=".view.MainActivity">
+    tools:context=".view.MainActivity"
+    tools:ignore="Overdraw">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="20dp">
+        android:layout_margin="20dp"
+        tools:ignore="UselessParent">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="50dp"
-            android:text="Login"
+            android:text="@string/login"
             android:textColor="@color/black"
             android:textSize="50sp"
             android:textStyle="bold" />
@@ -27,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="100dp"
-            android:text="Premium"
+            android:text="@string/premium"
             android:textColor="@color/black"
             android:textSize="35sp"
             android:textStyle="bold" />
@@ -37,7 +39,8 @@
             android:layout_height="120dp"
             android:background="@drawable/buukup"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="150dp"/>
+            android:layout_marginTop="150dp"
+            android:contentDescription="@string/todo" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="300dp"
@@ -50,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:padding="10dp"
                 android:layout_height="match_parent"
-                android:hint="Username"
+                android:hint="@string/username"
                 android:id="@+id/editUsername"
                 android:textColor="@color/black"
                 android:textColorHint="@color/black"
@@ -71,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:padding="10dp"
                 android:layout_height="match_parent"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:textColor="@color/black"
                 android:id="@+id/editPassword"
                 android:textColorHint="@color/black"
@@ -88,7 +91,7 @@
             android:layout_height="55dp"
             android:layout_below="@id/card3"
             android:layout_marginTop="170dp"
-            android:text="Login"
+            android:text="@string/login"
             android:textAllCaps="false"
             android:textSize="20sp" />
 
@@ -98,7 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:text="Belum Punya Akun?"
+            android:text="@string/belum_punya_akun"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />

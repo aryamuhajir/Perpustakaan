@@ -1,10 +1,9 @@
 package com.example.perpustakaan.view
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.lifecycle.Observer
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.perpustakaan.R
 import com.example.perpustakaan.datastore.UserManager
@@ -16,10 +15,10 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var userManager: UserManager
+    private lateinit var userManager: UserManager
 
-    var userDb : UserDatabase? = null
-    lateinit var viewModel : ViewModelUser
+    private var userDb : UserDatabase? = null
+    private lateinit var viewModel : ViewModelUser
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,19 +34,20 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnLogin.setOnClickListener {
-            var user = editUsername.text.toString()
-            var password = editPassword.text.toString()
+            val user = editUsername.text.toString()
+            val password = editPassword.text.toString()
             if (user.isNotBlank() && password.isNotBlank()){
-                viewModel.cekData.observe(this, Observer {
-                    if (it != 0){
+                viewModel.cekData.observe(this) {
+                    if (it != 0) {
                         Toast.makeText(this, "Berhasil Login", Toast.LENGTH_LONG).show()
                         startActivity(Intent(this@MainActivity, HomeActivity::class.java))
                         loginDataStore(user, password)
                         finish()
-                    }else{
-                        Toast.makeText(this, "Username atau Password salah", Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(this, "Username atau Password salah", Toast.LENGTH_LONG)
+                            .show()
                     }
-                })
+                }
                 viewModel.loginLive(user, password)
             }else{
                 Toast.makeText(this, "Username atau Password masih kosong!", Toast.LENGTH_LONG).show()
@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun loginDataStore(username : String, password : String){
+    private fun loginDataStore(username : String, password : String){
         GlobalScope.launch {
             userManager.login(username, password)
             userManager.setStatus("yes")

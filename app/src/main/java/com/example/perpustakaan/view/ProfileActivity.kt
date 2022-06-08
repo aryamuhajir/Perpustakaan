@@ -1,29 +1,30 @@
+@file:Suppress("RedundantExplicitType")
+
 package com.example.perpustakaan.view
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.perpustakaan.R
 import com.example.perpustakaan.adapter.PinjamAdapter
-import com.example.perpustakaan.adapter.RvAdapter
 import com.example.perpustakaan.datastore.UserManager
 import com.example.perpustakaan.model.GetAllBukuResponseItem
 import com.example.perpustakaan.room.peminjaman.PeminjamanDatabase
 import com.example.perpustakaan.viewmodel.ViewModelPinjam
-import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class ProfileActivity : AppCompatActivity() {
-    var pinjamDb : PeminjamanDatabase? = null
-    lateinit var viewModel : ViewModelPinjam
-    lateinit var userManager : UserManager
-    lateinit var bookAdapter : PinjamAdapter
+    private var pinjamDb : PeminjamanDatabase? = null
+    private lateinit var viewModel : ViewModelPinjam
+    private lateinit var userManager : UserManager
+    private lateinit var bookAdapter : PinjamAdapter
     var username = ""
 
 
@@ -50,19 +51,17 @@ class ProfileActivity : AppCompatActivity() {
 
 
     }
-    fun logout(){
 
-    }
-
-    fun getAllPinjaman(username : String){
+    @SuppressLint("NotifyDataSetChanged")
+    private fun getAllPinjaman(username : String){
         viewModel = ViewModelProvider(this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)).get(ViewModelPinjam::class.java)
 
 
-            viewModel.getLiveBukuObserver().observe(this@ProfileActivity){
-                if (it.size >=1){
+            viewModel.getLiveBukuObserver().observe(this@ProfileActivity){ it ->
+                if (it.isNotEmpty()){
                     rv_list.layoutManager = LinearLayoutManager(this@ProfileActivity)
-                    bookAdapter = PinjamAdapter (){
+                    bookAdapter = PinjamAdapter {
                         val pindah = Intent(this@ProfileActivity, DetailActivity::class.java)
                         val detailBuku : GetAllBukuResponseItem = GetAllBukuResponseItem("asdasd", it.idBuku.toString(),it.judul, it.penerbit,it.penulis,it.sampul,
                         it.sinopsis, 0, it.tanggalRilis)

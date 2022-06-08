@@ -11,7 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Register"
+        android:text="@string/register"
         android:layout_gravity="center_horizontal"
         android:textSize="40sp"
         android:layout_marginTop="30dp"
@@ -22,7 +22,8 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/todo" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="300dp"
@@ -35,7 +36,7 @@
             android:layout_width="match_parent"
             android:padding="10dp"
             android:layout_height="match_parent"
-            android:hint="username"
+            android:hint="@string/username"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             android:background="@null"
@@ -55,7 +56,7 @@
             android:layout_width="match_parent"
             android:padding="10dp"
             android:layout_height="match_parent"
-            android:hint="email"
+            android:hint="@string/email"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             android:background="@null"
@@ -74,7 +75,7 @@
             android:layout_width="match_parent"
             android:padding="10dp"
             android:layout_height="match_parent"
-            android:hint="password"
+            android:hint="@string/password"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             android:background="@null"
@@ -93,7 +94,7 @@
             android:layout_width="match_parent"
             android:padding="10dp"
             android:layout_height="match_parent"
-            android:hint="konfirmasi password"
+            android:hint="@string/konfirmasi_password"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             android:background="@null"
@@ -107,7 +108,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="daftar"
+        android:text="@string/daftar"
         android:textSize="20sp"
         android:textStyle="bold"
         android:id="@+id/btnDaftar"

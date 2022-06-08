@@ -1,5 +1,6 @@
 package com.example.perpustakaan.view
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,8 +11,9 @@ import androidx.lifecycle.asLiveData
 import com.example.perpustakaan.R
 import com.example.perpustakaan.datastore.UserManager
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
-    lateinit var userManager : UserManager
+    private lateinit var userManager : UserManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)

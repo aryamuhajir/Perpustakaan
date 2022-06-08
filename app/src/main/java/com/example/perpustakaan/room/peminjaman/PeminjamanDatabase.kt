@@ -5,7 +5,6 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.perpustakaan.room.user.User
-import com.example.perpustakaan.room.user.UserDao
 
 @Database(entities = [Peminjaman::class], version = 1)
 abstract class PeminjamanDatabase : RoomDatabase() {

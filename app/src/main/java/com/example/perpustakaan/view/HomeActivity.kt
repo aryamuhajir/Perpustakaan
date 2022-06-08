@@ -1,5 +1,6 @@
 package com.example.perpustakaan.view
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,9 +14,9 @@ import com.example.perpustakaan.viewmodel.ViewModelBuku
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
-    lateinit var bookAdapter : RvAdapter
+    private lateinit var bookAdapter : RvAdapter
 
-    lateinit var userManager : UserManager
+    private lateinit var userManager : UserManager
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,12 +37,13 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
-    fun getDataBuku(){
+    @SuppressLint("NotifyDataSetChanged")
+    private fun getDataBuku(){
         val viewModel = ViewModelProvider(this).get(ViewModelBuku::class.java)
-        viewModel.getLiveFilmObserver().observe(this) {
+        viewModel.getLiveFilmObserver().observe(this) { it ->
             if (it != null){
                 rv_item.layoutManager = LinearLayoutManager(this)
-                bookAdapter = RvAdapter (){
+                bookAdapter = RvAdapter {
                     val pindah = Intent(this@HomeActivity, DetailActivity::class.java)
                     pindah.putExtra("detailbuku", it)
                     pindah.putExtra("status", "home")

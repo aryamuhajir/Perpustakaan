@@ -1,7 +1,7 @@
+@file:Suppress("ControlFlowWithEmptyBody")
+
 package com.example.perpustakaan.viewmodel
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.perpustakaan.model.GetAllBukuResponseItem
@@ -10,15 +10,10 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ViewModelBuku () : ViewModel() {
+class ViewModelBuku : ViewModel() {
 
 
-    lateinit var liveDataBuku: MutableLiveData<List<GetAllBukuResponseItem>>
-
-    init {
-
-        liveDataBuku = MutableLiveData()
-    }
+    var liveDataBuku: MutableLiveData<List<GetAllBukuResponseItem>> = MutableLiveData()
 
     fun getLiveFilmObserver(): MutableLiveData<List<GetAllBukuResponseItem>> {
         return liveDataBuku
@@ -35,6 +30,7 @@ class ViewModelBuku () : ViewModel() {
                     if (response.isSuccessful) {
                         liveDataBuku.postValue(response.body())
                     } else {
+
                     }
 
                 }

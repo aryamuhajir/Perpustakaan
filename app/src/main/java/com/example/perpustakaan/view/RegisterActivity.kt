@@ -14,8 +14,8 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class RegisterActivity : AppCompatActivity() {
-    var userDb : UserDatabase? = null
-    lateinit var viewModel : ViewModelUser
+    private var userDb : UserDatabase? = null
+    private lateinit var viewModel : ViewModelUser
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -31,7 +31,7 @@ class RegisterActivity : AppCompatActivity() {
             val password = editPassword1.text.toString()
             val password1 = editPassword2.text.toString()
             val email = editEmail1.text.toString()
-            if (password.equals(password1)){
+            if (password == password1){
                 GlobalScope.launch {
                     viewModel.registerLive(User(null, username, email, password))
                     runOnUiThread {

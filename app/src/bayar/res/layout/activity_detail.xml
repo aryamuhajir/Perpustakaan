@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.DetailActivity">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp">
 
         <TextView
@@ -15,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="invisible"
-            android:text="premium" />
+            android:text="@string/premium" />
 
         <GridLayout
             android:layout_width="match_parent"
@@ -30,12 +29,12 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:text="Judul        :"/>
+                android:text="@string/sssax"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="JUDUL"
+                android:text="@string/judul"
                 android:textSize="20sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -47,11 +46,11 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:text="Rilis          :"/>
+                android:text="@string/rilis"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TANGGAL RILIS"
+                android:text="@string/tanggal_rilis"
                 android:textSize="20sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -63,11 +62,11 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:text="Penulis     :"/>
+                android:text="@string/asdasd"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="PENULIS"
+                android:text="@string/asdasdxc"
                 android:textSize="20sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -79,12 +78,12 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:text="Penerbit   :"/>
+                android:text="@string/asdadcs"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="PENERBIT"
+                android:text="@string/gdfgdf"
                 android:textSize="20sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -97,12 +96,12 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:text="Sinopsis   :"/>
+                android:text="@string/dfgdfg"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sinopsis"
+                android:text="@string/qweqw"
                 android:textSize="16sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -113,11 +112,10 @@
         </GridLayout>
 
         <TextView
-            android:id="@+id/detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="Detail"
+            android:text="@string/xcvxcv"
             android:textColor="@color/black"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -129,7 +127,8 @@
             android:layout_centerHorizontal="true"
             android:id="@+id/imageBuku1"
             android:layout_marginTop="50dp"
-            android:layout_marginBottom="5dp"/>
+            android:layout_marginBottom="5dp"
+            android:contentDescription="@string/todo" />
 
 
 
@@ -142,7 +141,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:text="PINJAM" />
+            android:text="@string/asczxc"
+            tools:ignore="RelativeOverlap" />
 
     </RelativeLayout>
 

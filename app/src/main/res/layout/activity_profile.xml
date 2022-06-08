@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,9 +9,10 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LOGOUT"
+        android:text="@string/logout"
         android:layout_alignParentEnd="true"
-        android:id="@+id/btnLogout"/>
+        android:id="@+id/btnLogout"
+        tools:ignore="RelativeOverlap" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_list"
@@ -26,7 +26,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:text="BELUM MEMINJAM BUKU"
+        android:text="@string/belum_meminjam_buku"
         android:id="@+id/txtBelum"
         android:layout_centerInParent="true"/>
 

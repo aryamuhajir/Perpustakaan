@@ -16,7 +16,8 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:id="@+id/imageBuku"/>
+            android:id="@+id/imageBuku"
+            android:contentDescription="@string/todo" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,7 +27,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="JUDUL"
+                android:text="@string/judul"
                 android:textSize="20sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
@@ -34,14 +35,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tanggal rilis"
+                android:text="@string/tanggal_rilis"
                 android:textSize="16sp"
                 android:textColor="#0DB3CF"
                 android:id="@+id/tanggalRilisBuku"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Penulis"
+                android:text="@string/penulis"
                 android:textSize="18sp"
                 android:textColor="#F4B514"
                 android:id="@+id/penulisBuku"/>
@@ -52,10 +53,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Deadline : "
+                    android:text="@string/deadline"
                     android:textSize="18sp"
-                    android:textColor="#D52657"
-                    android:id="@+id/txtd"/>
+                    android:textColor="#D52657" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -68,8 +68,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="Hari"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/hari"
                     android:textSize="18sp"
                     android:textColor="#D52657"
                     />

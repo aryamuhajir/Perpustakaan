@@ -1,9 +1,9 @@
 package com.example.perpustakaan.view
 
-import androidx.appcompat.app.AppCompatActivity
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Parcelable
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import com.bumptech.glide.Glide
@@ -12,17 +12,16 @@ import com.example.perpustakaan.datastore.UserManager
 import com.example.perpustakaan.model.GetAllBukuResponseItem
 import com.example.perpustakaan.room.peminjaman.Peminjaman
 import com.example.perpustakaan.room.peminjaman.PeminjamanDatabase
-import com.example.perpustakaan.room.user.UserDatabase
 import com.example.perpustakaan.viewmodel.ViewModelPinjam
-import com.example.perpustakaan.viewmodel.ViewModelUser
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class DetailActivity : AppCompatActivity() {
-    var pinjamDb : PeminjamanDatabase? = null
-    lateinit var viewModel : ViewModelPinjam
-    lateinit var userManager : UserManager
+    private var pinjamDb : PeminjamanDatabase? = null
+    private lateinit var viewModel : ViewModelPinjam
+    private lateinit var userManager : UserManager
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
@@ -57,7 +56,7 @@ class DetailActivity : AppCompatActivity() {
         btnPinjam.setOnClickListener {
             if (btnPinjam.text.equals("PINJAM")){
                 userManager.userNAME.asLiveData().observe(this){
-                    var username = it.toString()
+                    val username = it.toString()
                     if (txtLangganan.text.equals("premium")){
                         GlobalScope.launch {
                             viewModel.pinjamLive(Peminjaman(null, username, detailBuku?.id!!.toInt(), "PREMIUM", judul!!, penerbit!!, penulis!!, sampul!! , sinopsis!!, tanggalRilis!!))
@@ -67,7 +66,7 @@ class DetailActivity : AppCompatActivity() {
                         }
                     }else{
                         GlobalScope.launch {
-                            viewModel.pinjamLive(Peminjaman(null, username, detailBuku?.id!!.toInt(), detailBuku?.tanggalPinjam.toString(),  judul!!, penerbit!!, penulis!!, sampul!! , sinopsis!!, tanggalRilis!!))
+                            viewModel.pinjamLive(Peminjaman(null, username, detailBuku?.id!!.toInt(), detailBuku.tanggalPinjam.toString(),  judul!!, penerbit!!, penulis!!, sampul!! , sinopsis!!, tanggalRilis!!))
                             runOnUiThread {
                                 Toast.makeText(this@DetailActivity, "Berhasil meminjam buku gratis", Toast.LENGTH_LONG).show()
                             }
@@ -77,7 +76,7 @@ class DetailActivity : AppCompatActivity() {
                 }
             }else{
                 userManager.userNAME.asLiveData().observe(this) {
-                    var username = it.toString()
+                    val username = it.toString()
                     GlobalScope.launch {
                         viewModel.kembaliLive(idBuku!!.toInt(), username)
                         runOnUiThread {

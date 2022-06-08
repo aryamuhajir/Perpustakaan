@@ -17,8 +17,6 @@ class UserManager(context : Context) {
         val USERNAME = preferencesKey<String>("USERNAME")
         val PASSWORD = preferencesKey<String>("PASSWORD")
 
-        val EMAIL = preferencesKey<String>("EMAIL")
-        val ID = preferencesKey<Int>("ID")
         val STATUS = preferencesKey<String>("STATUS")
 
 
@@ -47,19 +45,9 @@ class UserManager(context : Context) {
     }
     // sebagai pengakses data yang ada di datastore via livedatya
     val userNAME : Flow<String> = dataStore.data.map {
-        it[UserManager.USERNAME] ?: ""
-    }
-//    val userEMAIL : Flow<String> = dataStore.data.map {
-//        it[UserManager.EMAIL] ?: ""
-//    }
-//
-//    val userID : Flow<Int> = dataStore.data.map {
-//        it[UserManager.ID] ?: 0
-//    }
-    val userPASS : Flow<String> = dataStore.data.map {
-        it[UserManager.PASSWORD] ?: ""
+        it[USERNAME] ?: ""
     }
     val userSTATUS : Flow<String> = dataStore2.data.map {
-        it[UserManager.STATUS] ?: "no"
+        it[STATUS] ?: "no"
     }
 }

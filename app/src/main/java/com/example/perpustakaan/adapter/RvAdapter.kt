@@ -17,9 +17,7 @@ class RvAdapter(private var onClick : (GetAllBukuResponseItem)->Unit) : Recycler
     fun setDataFilm(buku : List<GetAllBukuResponseItem>){
         this.dataBuku = buku
     }
-    class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-
-    }
+    class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val viewItem = LayoutInflater.from(parent.context).inflate(R.layout.item_adapter_buku, parent, false)
@@ -41,10 +39,10 @@ class RvAdapter(private var onClick : (GetAllBukuResponseItem)->Unit) : Recycler
     }
 
     override fun getItemCount(): Int {
-        if (dataBuku == null){
-            return 0
+        return if (dataBuku == null){
+            0
         }else{
-            return dataBuku!!.size
+            dataBuku!!.size
 
         }
     }
